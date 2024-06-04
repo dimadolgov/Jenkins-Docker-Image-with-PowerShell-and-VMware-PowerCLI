@@ -3,10 +3,9 @@ USER root
 
 WORKDIR /tmp
 
-COPY powershell_7.4.2-1.deb_amd64.deb .
-
 RUN apt-get update && \
     apt-get install -y wget libicu-dev && \
+    wget https://github.com/PowerShell/PowerShell/releases/download/v7.4.2/powershell_7.4.2-1.deb_amd64.deb && \
     dpkg -i powershell_7.4.2-1.deb_amd64.deb
 
 RUN pwsh -Command "Install-Module -Name VMware.PowerCLI -Force -AllowClobber -Scope AllUsers"
